@@ -137,7 +137,7 @@ sudo launchctl unload -w /Library/LaunchDaemons/com.usblocker.plist
 sudo rm /Library/LaunchDaemons/com.usblocker.plist
 ```
 
----
+
 
 ## Configuration
 
