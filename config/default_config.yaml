@@ -1,0 +1,31 @@
+# USB Blocker — Default Configuration
+# ====================================
+# Copy this file to /etc/usb-blocker/config.yaml (Linux/macOS) or
+# %ProgramData%\UsbBlocker\config.yaml (Windows) to override defaults.
+
+# Global kill-switch: set to false to temporarily disable blocking (admin only)
+blocking_enabled: true
+
+ipc:
+  # Unix domain socket path (Linux / macOS)
+  socket_path: /run/usb-blocker/service.sock
+  # Named pipe name (Windows)
+  pipe_name: \\.\pipe\usb-blocker
+  # Seconds to wait for IPC responses
+  timeout_seconds: 5
+
+log:
+  path: /var/log/usb-blocker/usb-blocker.log
+  # Max size per log file before rotation (bytes)
+  max_bytes: 10485760   # 10 MB
+  # Number of rotated backup files to keep
+  backup_count: 5
+  # Logging level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+# SQLite allow-list database path (requires root/admin to modify)
+allowlist_db: /etc/usb-blocker/allowlist.db
+
+# Linux: udev rules directory and rule filename
+udev_rules_dir: /etc/udev/rules.d
+udev_rules_file: 99-usb-blocker.rules

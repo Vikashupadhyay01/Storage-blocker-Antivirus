@@ -1,0 +1,23 @@
+[Unit]
+Description=USB Blocker Service
+Documentation=https://github.com/your-org/usb-blocker
+After=network.target udev.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/python3 /opt/usb-blocker/service/linux_daemon.py
+WorkingDirectory=/opt/usb-blocker
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=usb-blocker
+
+# Security hardening
+User=root
+ProtectSystem=no
+PrivateTmp=yes
+NoNewPrivileges=no
+
+[Install]
+WantedBy=multi-user.target
