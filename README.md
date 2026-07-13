@@ -3,7 +3,6 @@
 A cross-platform USB mass-storage device control application written in Python.  
 Blocks **all** USB storage devices by default and enforces a persistent **allow-list** keyed by vendor ID + product ID + serial number.
 
----
 
 ## Architecture
 
@@ -24,7 +23,6 @@ Two runtime components:
 | **Service / daemon** | root / SYSTEM | Monitors USB events, enforces allow-list, hosts IPC socket |
 | **Tray app** | regular user | Shows status, lets admin manage allow-list via IPC |
 
----
 
 ## Requirements
 
@@ -39,7 +37,7 @@ pip install -e ".[windows]" # Windows
 pip install -e ".[macos]"   # macOS
 ```
 
----
+
 
 ## Installation
 
@@ -74,7 +72,7 @@ sudo rm /etc/systemd/system/usb_blocker.service
 sudo systemctl daemon-reload
 ```
 
----
+
 
 ### Windows (Windows Service via pywin32)
 
@@ -106,7 +104,7 @@ net stop  UsbBlockerService
 # or via the Services MMC snap-in (services.msc)
 ```
 
----
+
 
 ### macOS (launchd)
 
@@ -161,7 +159,7 @@ Copy `config/default_config.yaml` as a starting point.
 | `log.backup_count` | `5` | Rotated copies to keep |
 | `allowlist_db` | `/etc/usb-blocker/allowlist.db` | SQLite allow-list path |
 
----
+
 
 ## Allow-list management
 
@@ -174,7 +172,7 @@ The allow-list is managed by the privileged service.  Use the tray app:
 
 To remove a device: tray menu → **Allow-list** → select entry → **Remove from allow-list**.
 
----
+
 
 ## Logging
 
@@ -185,7 +183,7 @@ Events are logged in two places:
 
 Each event record contains: timestamp, event type (CONNECTED / ALLOWED / BLOCKED / DISCONNECTED), device identity, and action taken.
 
----
+
 
 ## Running the Tests
 
@@ -197,7 +195,7 @@ pytest tests/ -v
 
 Tests are fully self-contained (no real hardware or OS-level USB access needed). Platform-specific imports are mocked or skipped.
 
----
+
 
 ## Blocking Implementation Details
 
@@ -209,7 +207,7 @@ Tests are fully self-contained (no real hardware or OS-level USB access needed).
 
 **Fail-safe**: if a device cannot be fully identified, it is **blocked by default** and a warning is logged.
 
----
+
 
 ## Security Notes
 
