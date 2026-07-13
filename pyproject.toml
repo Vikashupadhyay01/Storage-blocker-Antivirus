@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "usb-blocker"
+version = "1.0.0"
+description = "Cross-platform USB mass-storage device control with allow-list enforcement"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+dependencies = [
+    "PyYAML>=6.0",
+    "pystray>=0.19",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+linux   = ["pyudev>=0.24"]
+windows = ["pywin32>=306", "wmi>=1.5"]
+macos   = [
+    "pyobjc-core>=10",
+    "pyobjc-framework-IOKit>=10",
+    "pyobjc-framework-DiskArbitration>=10",
+    "pyobjc-framework-CoreFoundation>=10",
+]
+test = ["pytest>=8", "pytest-mock>=3.14"]
+
+[project.scripts]
+usb-blocker-service = "service.linux_daemon:main"
+usb-blocker-tray    = "tray.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "backends*", "service*", "tray*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

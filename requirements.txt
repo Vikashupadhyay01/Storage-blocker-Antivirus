@@ -1,0 +1,31 @@
+# USB Blocker — Python dependencies
+# ===================================
+# Install everything:
+#   pip install -r requirements.txt
+#
+# Platform-specific packages are guarded by environment markers so pip
+# installs cleanly on any OS (it simply skips packages that don't apply).
+
+# ── Core ────────────────────────────────────────────────────────────────────
+PyYAML==6.0.2
+
+# ── Tray app ─────────────────────────────────────────────────────────────────
+pystray==0.19.5
+Pillow==10.4.0
+
+# ── Linux backend ─────────────────────────────────────────────────────────────
+pyudev==0.24.3 ; sys_platform == "linux"
+
+# ── Windows backend ───────────────────────────────────────────────────────────
+pywin32==306 ; sys_platform == "win32"
+wmi==1.5.1   ; sys_platform == "win32"
+
+# ── macOS backend ─────────────────────────────────────────────────────────────
+pyobjc-core==10.3.2                     ; sys_platform == "darwin"
+pyobjc-framework-IOKit==10.3.2          ; sys_platform == "darwin"
+pyobjc-framework-DiskArbitration==10.3.2 ; sys_platform == "darwin"
+pyobjc-framework-CoreFoundation==10.3.2  ; sys_platform == "darwin"
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+pytest==8.2.2
+pytest-mock==3.14.0
